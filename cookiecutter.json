@@ -5,5 +5,7 @@
     "email": "Your email",
     "description": "A short description of the project.",
     "year": "2013",
-    "domain_name": "example.com"
+    "domain_name": "example.com",
+    "remote_host": "root@example.com",
+    "remote_path": "/var/www/project_name/"
 }

@@ -35,5 +35,6 @@ django-autoslug==1.7.1
 # Useful things
 django-avatar==2.0
 
-
+# Assets management
+django_compressor
 # Your custom requirements go here

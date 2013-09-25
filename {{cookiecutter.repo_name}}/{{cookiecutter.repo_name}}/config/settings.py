@@ -48,6 +48,7 @@ class Common(Configuration):
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
+        'compressor', # assets management
     )
 
     # Apps specific for this project go here.
@@ -129,10 +130,10 @@ class Common(Configuration):
 
     ########## GENERAL CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
-    TIME_ZONE = 'America/Los_Angeles'
+    TIME_ZONE = 'Europe/Moscow'
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-    LANGUAGE_CODE = 'en-us'
+    LANGUAGE_CODE = 'ru-ru'
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
     SITE_ID = 1
@@ -199,7 +200,7 @@ class Common(Configuration):
     )
 
     # Some really nice defaults
-    ACCOUNT_AUTHENTICATION_METHOD = "username"
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_EMAIL_VERIFICATION = "mandatory"
     ########## END AUTHENTICATION CONFIGURATION
@@ -263,7 +264,7 @@ class Local(Common):
 
     ########## django-debug-toolbar
     MIDDLEWARE_CLASSES = Common.MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-    INSTALLED_APPS += ('debug_toolbar',)
+    INSTALLED_APPS += ('debug_toolbar', 'django_extensions')
 
     INTERNAL_IPS = ('127.0.0.1',)
 
@@ -289,6 +290,7 @@ class Local(Common):
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+        'compressor.finders.CompressorFinder',
     )
     ########## END STATIC FILE CONFIGURATION
 
@@ -325,7 +327,7 @@ class Production(Common):
     ALLOWED_HOSTS = ["*"]
     ########## END SITE CONFIGURATION
 
-    INSTALLED_APPS += ("gunicorn", )
+    #INSTALLED_APPS += ("gunicorn", )
 
     ########## STORAGE CONFIGURATION
     # See: http://django-storages.readthedocs.org/en/latest/index.html
@@ -334,14 +336,14 @@ class Production(Common):
     )
 
     # See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
-    STATICFILES_STORAGE = DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    #STATICFILES_STORAGE = DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
     # See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
-    AWS_ACCESS_KEY_ID = values.SecretValue()
-    AWS_SECRET_ACCESS_KEY = values.SecretValue()
-    AWS_STORAGE_BUCKET_NAME = values.SecretValue()
-    AWS_AUTO_CREATE_BUCKET = True
-    AWS_QUERYSTRING_AUTH = False
+    #AWS_ACCESS_KEY_ID = values.SecretValue()
+    #AWS_SECRET_ACCESS_KEY = values.SecretValue()
+    #AWS_STORAGE_BUCKET_NAME = values.SecretValue()
+    #AWS_AUTO_CREATE_BUCKET = True
+    #AWS_QUERYSTRING_AUTH = False
 
     # AWS cache settings, don't change unless you know what you're doing:
     AWS_EXPIREY = 60 * 60 * 24 * 7
@@ -351,20 +353,21 @@ class Production(Common):
     }
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-    STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+    #STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+    STATIC_URL = '/static/'
     ########## END STORAGE CONFIGURATION
 
     ########## EMAIL
     DEFAULT_FROM_EMAIL = values.Value(
             '{{cookiecutter.project_name}} <{{cookiecutter.project_name}}-noreply@{{cookiecutter.domain_name}}>')
     EMAIL_BACKEND = values.Value('django.core.mail.backends.smtp.EmailBackend')
-    EMAIL_HOST = values.Value('smtp.sendgrid.com')
-    EMAIL_HOST_PASSWORD = values.SecretValue(environ_prefix="", environ_name="SENDGRID_PASSWORD")
-    EMAIL_HOST_USER = values.SecretValue(environ_prefix="", environ_name="SENDGRID_USERNAME")
-    EMAIL_PORT = values.IntegerValue(587, environ_prefix="", environ_name="EMAIL_PORT")
+    EMAIL_HOST = values.Value('127.0.0.1')
+    #EMAIL_HOST_PASSWORD = values.SecretValue(environ_prefix="")
+    #EMAIL_HOST_USER = values.SecretValue(environ_prefix="")
+    EMAIL_PORT = values.IntegerValue(25, environ_prefix="", environ_name="EMAIL_PORT")
     EMAIL_SUBJECT_PREFIX = values.Value('[{{cookiecutter.project_name}}] ', environ_name="EMAIL_SUBJECT_PREFIX")
-    EMAIL_USE_TLS = True
-    SERVER_EMAIL = EMAIL_HOST_USER
+    #EMAIL_USE_TLS = True
+    SERVER_EMAIL = DEFAULT_FROM_EMAIL
     ########## END EMAIL
 
     ########## TEMPLATE CONFIGURATION
