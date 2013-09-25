@@ -41,14 +41,13 @@ def run_manage(cmd, lr):
 		run('venv/bin/python {{cookiecutter.repo_name}}/manage.py %s --settings=config.settings' % cmd)
 
 @task
-def create_db():
-	p = prompt("""local, remote""")
-	if p == 'local':
+def create_db(side='local'):
+	if side == 'local':
 		local('psql -U postgres -c "drop database if exists {{cookiecutter.repo_name}}"')
 		local('psql -U postgres -c "create database {{cookiecutter.repo_name}}"')
-	run_manage("syncdb --noinput", p)
-	run_manage("migrate", p)
-	run_manage("collectstatic", p)
+	run_manage("syncdb --noinput", side)
+	run_manage("migrate", side)
+	run_manage("collectstatic", side)
 	print """
 from django.contrib.sites.models import Site;
 site = Site.objects.get()
@@ -59,21 +58,21 @@ site.save()"""
 	
 
 @task
-def make_venv():
+def venv(side='local'):
 	apt = "apt-get install build-essential python-dev libxml2-dev libxslt1-dev libjpeg-turbo8-dev libjpeg8-dev libfreetype6-dev libwebp-dev libmemcached-dev libtidy-dev"
-	p = prompt("""local, remote, lreq, rreq""")
 	if p == 'local':
 		local("sudo %s" % apt)
 		local("virtualenv venv/")
-		p = 'lreq'
-	if p == 'remote':
+	else:
 		run("%s" % apt)
 		with cd(code_dir):
 			run("virtualenv venv/")
-		p = 'rreq'
-	if p == 'lreq':
+
+@task
+def pip(side='local'):
+	if p == 'local':
 		local("venv/bin/pip install -r requirements/local.txt")
-	if p == 'rreq':
+	else:
 		with cd(code_dir):
 			run("venv/bin/pip install -r requirements/production.txt")
 
@@ -95,4 +94,4 @@ def cpdb():
 	local("rsync -rlptzv --progress --compress-level=9 -e ssh %s:%sbase.sql ./" % (env.hosts[0], code_dir))
 	local('psql -U postgres -c "drop database if exists {{cookiecutter.repo_name}}"')
 	local('psql -U postgres -c "create database {{cookiecutter.repo_name}}"')
-	local('psql -U postgres joby < base.sql')
+	local('psql -U postgres {{cookiecutter.repo_name}} < base.sql')

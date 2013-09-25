@@ -20,6 +20,7 @@ git+git://github.com/pydanny/django-model-utils@d71bf2db7581d91dcc8e0a66fd4859eb
 
 # images
 Pillow==2.1.0
+sorl-thumbnail
 
 # For user registration, either via email or social
 # Well-built with regular release cycles!

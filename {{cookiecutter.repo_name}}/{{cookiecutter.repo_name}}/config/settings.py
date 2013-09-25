@@ -49,6 +49,7 @@ class Common(Configuration):
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
         'compressor', # assets management
+        'sorl.thumbnail', #thumbnails
     )
 
     # Apps specific for this project go here.
@@ -114,7 +115,7 @@ class Common(Configuration):
 
     ########## DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-    DATABASES = values.DatabaseURLValue('postgres://localhost/{{cookiecutter.repo_name}}')
+    DATABASES = values.DatabaseURLValue('postgres://postgres@/{{cookiecutter.repo_name}}')
     ########## END DATABASE CONFIGURATION
 
     ########## CACHING
@@ -214,6 +215,10 @@ class Common(Configuration):
     ########## SLUGLIFIER
     AUTOSLUG_SLUGIFY_FUNCTION = "slugify.slugify"
     ########## END SLUGLIFIER
+
+    ########## SORL THUMBNAIL
+    THUMBNAIL_KVSTORE = "sorl.thumbnail.kvstores.redis_kvstore.KVStore"
+    ########## END SORL THUMBNAIL
 
     ########## LOGGING CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
