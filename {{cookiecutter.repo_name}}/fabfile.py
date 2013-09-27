@@ -52,8 +52,10 @@ def install_remote():
 	append("/etc/apt/sources.list.d/pgdg.list", "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main")
 	run("wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -")
 	run("apt-get update && apt-get upgrade -qq --force-yes")
-	run("apt-get install nginx nginx-common nginx-full redis-server python-virtualenv postgresql-9.3 logrotate -qq --force-yes")
+	run("apt-get install nginx nginx-common nginx-full redis-server python-virtualenv postgresql-9.3 logrotate supervisor -qq --force-yes")
 	run("apt-get install %s -qq --force-yes" % venv_dep)
+	run("ln -s -t /etc/nginx/sites-enabled/ %snginx_{{cookiecutter.repo_name}}.conf" % code_dir)
+	run("ln -s -t /etc/supervisor/conf.d/ %ssupervisor_{{cookiecutter.repo_name}}.conf" % code_dir)
 
 @task
 def create_db(side='local'):
