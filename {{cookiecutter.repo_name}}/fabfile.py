@@ -5,6 +5,8 @@ from fabric.api import *
 env.hosts = ['{{cookiecutter.remote_host}}']
 code_dir = '{{cookiecutter.remote_path}}'
 
+venv_dep = "build-essential python-dev libxml2-dev libxslt1-dev libjpeg-turbo8-dev libjpeg8-dev libfreetype6-dev libwebp-dev libtiff4-dev libtidy-dev libpq-dev"
+
 @task
 def commit(description):
 	local('git status')
@@ -38,7 +40,20 @@ def run_manage(cmd, lr):
 	if lr == 'local':
 		local('venv/bin/python {{cookiecutter.repo_name}}/manage.py %s --settings=config.settings' % cmd)
 	else:
-		run('venv/bin/python {{cookiecutter.repo_name}}/manage.py %s --settings=config.settings' % cmd)
+		with cd(code_dir):
+			run('venv/bin/python {{cookiecutter.repo_name}}/manage.py %s --settings=config.settings' % cmd)
+
+@task
+def install_remote():
+	from fabric.contrib.files import append
+	run("apt-get install software-properties-common python-software-properties -y")
+	run("add-apt-repository -y ppa:chris-lea/nginx-devel")
+	run("add-apt-repository -y ppa:chris-lea/redis-server")
+	append("/etc/apt/sources.list.d/pgdg.list", "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main")
+	run("wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -")
+	run("apt-get update && apt-get upgrade -qq --force-yes")
+	run("apt-get install nginx nginx-common nginx-full redis-server python-virtualenv postgresql-9.3 logrotate -qq --force-yes")
+	run("apt-get install %s -qq --force-yes" % venv_dep)
 
 @task
 def create_db(side='local'):
@@ -59,22 +74,20 @@ site.save()"""
 
 @task
 def venv(side='local'):
-	apt = "apt-get install build-essential python-dev libxml2-dev libxslt1-dev libjpeg-turbo8-dev libjpeg8-dev libfreetype6-dev libwebp-dev libmemcached-dev libtidy-dev"
-	if p == 'local':
-		local("sudo %s" % apt)
+	if side == 'local':
+		local("sudo apt-get install %s -y" % venv_dep)
 		local("virtualenv venv/")
 	else:
-		run("%s" % apt)
 		with cd(code_dir):
 			run("virtualenv venv/")
 
 @task
 def pip(side='local'):
-	if p == 'local':
-		local("venv/bin/pip install -r requirements/local.txt")
+	if side == 'local':
+		local("venv/bin/pip install -U -r requirements/local.txt")
 	else:
 		with cd(code_dir):
-			run("venv/bin/pip install -r requirements/production.txt")
+			run("venv/bin/pip install -U -r requirements/production.txt")
 
 @task
 def devserver():
