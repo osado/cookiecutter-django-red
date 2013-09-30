@@ -15,8 +15,7 @@ django-floppyforms==1.1
 # Models
 South==0.8.2
 # hack so django-model-utils doesn't override Django 1.6b4 install
-git+git://github.com/pydanny/django-model-utils@d71bf2db7581d91dcc8e0a66fd4859eb8969d256
-
+git+git://github.com/pydanny/django-model-utils
 
 # images
 Pillow==2.1.0
@@ -38,4 +37,15 @@ django-avatar==2.0
 
 # Assets management
 django_compressor
+
+# Admin tools
+django-admin-tools
+
+# Russian transliterate/numeric utils
+pytils
+
+# cache, sessions
+django-redis
+django-redis-sessions
+
 # Your custom requirements go here

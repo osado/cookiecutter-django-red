@@ -44,6 +44,17 @@ def run_manage(cmd, lr):
 			run('venv/bin/python {{cookiecutter.repo_name}}/manage.py %s --settings=config.settings' % cmd)
 
 @task
+def manage(cmd):
+	run_manage(cmd, 'local')
+
+
+@task
+def make_messages():
+	with lcd('freestock/'):
+		local('../venv/bin/django-admin.py makemessages --locale=ru')
+		local('../venv/bin/django-admin.py compilemessages --locale=ru')
+
+@task
 def install_remote():
 	from fabric.contrib.files import append
 	run("apt-get install software-properties-common python-software-properties -y")
@@ -64,7 +75,7 @@ def create_db(side='local'):
 		local('psql -U postgres -c "create database {{cookiecutter.repo_name}}"')
 	run_manage("syncdb --noinput", side)
 	run_manage("migrate", side)
-	run_manage("collectstatic", side)
+	#run_manage("collectstatic", side)
 	print """
 from django.contrib.sites.models import Site;
 site = Site.objects.get()

@@ -1,0 +1,376 @@
+# {{ cookiecutter.description }}.
+# Copyright (C) {{ cookiecutter.year }}, {{ cookiecutter.author_name }}
+# This file is distributed under the same license as the {{ cookiecutter.project_name }} package.
+# Nikolay Udalov <nikolaj.udalov@gmail.com>, 2013.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-30 09:37+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: {{ cookiecutter.author_name }} <{{ cookiecutter.email }}>\n"
+"Language-Team: Russian <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: config/settings.py:168
+msgid "Russian"
+msgstr "Русский"
+
+#: config/settings.py:169
+msgid "English"
+msgstr ""
+
+#: templates/base.html:44
+msgid "My Profile"
+msgstr "Профиль"
+
+#: templates/base.html:45
+msgid "Logout"
+msgstr "Выйти"
+
+#: templates/base.html:47 templates/account/signup.html:10
+#: templates/account/signup.html.py:20
+msgid "Sign Up"
+msgstr "Регистрация"
+
+#: templates/base.html:48
+msgid "Log In"
+msgstr "Войти"
+
+#: templates/account/email.html:7
+msgid "Account"
+msgstr "Учетная запись"
+
+#: templates/account/email.html:13
+msgid "E-mail Addresses"
+msgstr "E-mail адрес"
+
+#: templates/account/email.html:15
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "Следующие e-mail адреса ассоциированы с вашей учетной записью:"
+
+#: templates/account/email.html:29
+msgid "Verified"
+msgstr "Подтвержден"
+
+#: templates/account/email.html:31
+msgid "Unverified"
+msgstr "Не подтвержден"
+
+#: templates/account/email.html:33
+msgid "Primary"
+msgstr "Основной"
+
+#: templates/account/email.html:39
+msgid "Make Primary"
+msgstr "Сделать основным"
+
+#: templates/account/email.html:40
+msgid "Re-send Verification"
+msgstr "Повторно отправить письмо с подтверждением"
+
+#: templates/account/email.html:41
+msgid "Remove"
+msgstr "Удалить"
+
+#: templates/account/email.html:48
+msgid "Warning:"
+msgstr "Внимание:"
+
+#: templates/account/email.html:48
+msgid ""
+"You currently do not have any e-mail address set up. You should really add "
+"an e-mail address so you can receive notifications, reset your password, etc."
+msgstr ""
+"Сейчас у вас не указан e-mail адрес. Вы должны добавитьe-mail адрес для "
+"получения уведомлений, восстановления пароля и т.д."
+
+#: templates/account/email.html:53
+msgid "Add E-mail Address"
+msgstr "Добавить E-mail адрес"
+
+#: templates/account/email.html:58
+msgid "Add E-mail"
+msgstr "Добавить E-mail"
+
+#: templates/account/email.html:67
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "Вы действительно хотите удалить выбранный e-mail адрес?"
+
+#: templates/account/email_confirm.html:7
+#: templates/account/email_confirm.html:14
+#: templates/account/email_confirmed.html:6
+#: templates/account/email_confirmed.html:13
+msgid "Confirm E-mail Address"
+msgstr "Подтвердите E-mail адрес"
+
+#: templates/account/email_confirm.html:20
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+"Пожалуйста, подтвердите, что <a href=\"mailto:%(email)s\">%(email)s</a> это "
+"e-mail адрес пользователя %(user_display)s."
+
+#: templates/account/email_confirm.html:24
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: templates/account/email_confirm.html:31
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+"Этот ссылка подтверждения e-mail адреса устарела или недействительна. "
+"Пожалуйста <a href=\"%(email_url)s\">запросите новое подтверждение e-mail "
+"адреса</a>."
+
+#: templates/account/email_confirmed.html:17
+#, python-format
+msgid ""
+"You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-"
+"mail address for user %(user_display)s."
+msgstr ""
+"Вы подтвердили, что <a href=\"mailto:%(email)s\">%(email)s</a> является "
+"адресом e-mail для пользователя %(user_display)s."
+
+#: templates/account/login.html:8 templates/account/login.html.py:16
+#: templates/account/login.html:44
+msgid "Sign In"
+msgstr "Войти"
+
+#: templates/account/login.html:19
+#, python-format
+msgid ""
+"Please sign in with one\n"
+"      of your existing third party accounts. Or, <a href=\"%(signup_url)s"
+"\">sign up</a> \n"
+"      for a %(site_name)s account and sign in below:"
+msgstr ""
+"Пожалуйста, войдите используя\n"
+"       имеющуюся учетную запись в социальных сетях. Или, <a href="
+"\"%(signup_url)s\">зарегистрируйтесь</a>\n"
+"       на %(site_name)s ниже:"
+
+#: templates/account/login.html:29
+msgid "or"
+msgstr "или"
+
+#: templates/account/login.html:43
+msgid "Forgot Password?"
+msgstr "Забыли пароль?"
+
+#: templates/account/logout.html:6 templates/account/logout.html.py:13
+#: templates/account/logout.html:22
+msgid "Sign Out"
+msgstr "Выйти"
+
+#: templates/account/logout.html:15
+msgid "Are you sure you want to sign out?"
+msgstr "Вы уверены, что хотите выйти из аккаунта?"
+
+#: templates/account/password_change.html:5
+#: templates/account/password_change.html:11
+#: templates/account/password_change.html:16
+#: templates/account/password_reset_from_key.html:7
+#: templates/account/password_reset_from_key.html:13
+#: templates/account/password_reset_from_key_done.html:5
+#: templates/account/password_reset_from_key_done.html:11
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+#: templates/account/password_delete.html:5
+#: templates/account/password_delete.html:8
+msgid "Delete Password"
+msgstr "Удалить пароль"
+
+#: templates/account/password_delete.html:9
+msgid ""
+"You may delete your password since you are currently logged in using OpenID."
+msgstr ""
+"Вы можете удалить пароль, так как вы сейчас авторизовались через OpenID."
+
+#: templates/account/password_delete.html:12
+msgid "delete my password"
+msgstr "удалить мой пароль"
+
+#: templates/account/password_delete_done.html:5
+#: templates/account/password_delete_done.html:8
+msgid "Password Deleted"
+msgstr "Пароль удален"
+
+#: templates/account/password_delete_done.html:9
+msgid "Your password has been deleted."
+msgstr "Ваш пароль удален."
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:14
+#: templates/account/password_reset_done.html:6
+#: templates/account/password_reset_done.html:12
+msgid "Password Reset"
+msgstr "Сброс пароля"
+
+#: templates/account/password_reset.html:19
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+"Забыли пароль? Введите свой e-mail адрес, и мы вышлем вам письмо позволяющее "
+"сбросить пароль."
+
+#: templates/account/password_reset.html:24
+msgid "Reset My Password"
+msgstr "Сбросить пароль"
+
+#: templates/account/password_reset.html:27
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+"Пожалуйста, свяжитесь с нами, если у вас возникли проблемы со сбросом пароля."
+
+#: templates/account/password_reset_done.html:18
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+"Мы отправили вам письмо на e-mail. Пожалуйста, свяжитесь с нами, если вы не "
+"получили его в ближайшее время."
+
+#: templates/account/password_reset_from_key.html:13
+msgid "Bad Token"
+msgstr "Неверный токен"
+
+#: templates/account/password_reset_from_key.html:17
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+"Ссылка сброса пароля была недействительной, возможно потому, что уже была "
+"использована. Пожалуйста, запросите <a href=\"%(passwd_reset_url)s\"> сброса "
+"пароля заново</a>."
+
+#: templates/account/password_reset_from_key.html:23
+msgid "change password"
+msgstr "изменить пароль"
+
+#: templates/account/password_reset_from_key.html:26
+#: templates/account/password_reset_from_key_done.html:12
+msgid "Your password is now changed."
+msgstr "Ваш пароль изменен."
+
+#: templates/account/password_set.html:6
+#: templates/account/password_set.html:12
+#: templates/account/password_set.html:17
+msgid "Set Password"
+msgstr "Установить пароль"
+
+#: templates/account/signup.html:7
+msgid "Signup"
+msgstr "Регистрация"
+
+#: templates/account/signup.html:12
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+"Уже есть учетная запись? Тогда, пожалуйста, <a href=\"%(login_url)s"
+"\">войдите</a>."
+
+#: templates/account/signup_closed.html:6
+#: templates/account/signup_closed.html:12
+msgid "Sign Up Closed"
+msgstr "Регистрация закрыта"
+
+#: templates/account/signup_closed.html:14
+msgid "We are sorry, but the sign up is currently closed."
+msgstr "Мы извиняемся, но сейчас регистрация закрыта"
+
+#: templates/account/verification_sent.html:5
+#: templates/account/verification_sent.html:11
+#: templates/account/verified_email_required.html:6
+#: templates/account/verified_email_required.html:12
+msgid "Verify Your E-mail Address"
+msgstr "Подтвердите ваш E-mail адрес"
+
+#: templates/account/verification_sent.html:13
+#, python-format
+msgid ""
+"We have sent an e-mail to <a href=\"mailto:%(email)s\">%(email)s</a> for "
+"verification. Follow the link provided to finalize the signup process. "
+"Please contact us if you do not receive it within a few minutes."
+msgstr ""
+"На e-mail <a href=\"mailto:%(email)s\">%(email)s</a> было отправлено письмо "
+"для подтверждения. Пройдите поссылке в письме для завершения процесса "
+"регистрации. Свяжитесь с нами, если вы не получите письмо в ближайшее время."
+
+#: templates/account/verified_email_required.html:16
+msgid ""
+"This part of the site requires us to verify that\n"
+"        you are who you claim to be. For this purpose, we require that you\n"
+"        verify ownership of your e-mail address. "
+msgstr ""
+"Эта часть сайта требует подтверждения, что\n"
+"         вы тот, кем себя называете. Для этого, пожалуйста,\n"
+"         подтвердите свой адрес электронной почты."
+
+#: templates/account/verified_email_required.html:20
+msgid ""
+"We have sent an e-mail to you for\n"
+"        verification. Please click on the link inside this e-mail. Please\n"
+"        contact us if you do not receive it within a few minutes."
+msgstr ""
+"На ваш e-mail было отправлено письмо для\n"
+"        проверки. Пожалуйста, перейдите по ссылке в этом письме. \n"
+"        Свяжитесь с нами, если не получите письмо в ближайшее время."
+
+#: templates/account/verified_email_required.html:24
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
+msgstr ""
+"<strong>Замечание:</strong> вы так же можете <a href=\"%(email_url)s"
+"\">изменить ваш e-mail адрес</a>."
+
+#: templates/avatar/add.html:10 templates/avatar/change.html:9
+msgid "Your current avatar: "
+msgstr "Ваша аватарка:"
+
+#: templates/avatar/add.html:13 templates/avatar/change.html:12
+msgid "You haven't uploaded an avatar yet. Please upload one now."
+msgstr "У вас еще нет загруженных аватарок. Пожалуйста, загрузите изображение."
+
+#: templates/avatar/add.html:17 templates/avatar/change.html:23
+msgid "Upload New Image"
+msgstr "Загрузить новое изображение"
+
+#: templates/avatar/change.html:18
+msgid "Choose new Default"
+msgstr "Выбрать по умолчанию"
+
+#: templates/avatar/confirm_delete.html:9
+msgid "Please select the avatars that you would like to delete."
+msgstr "Пожалуйста выберите аватарки, которые вы хотите удалить"
+
+#: templates/avatar/confirm_delete.html:12
+#, python-format
+msgid ""
+"You have no avatars to delete. Please <a href=\"%(avatar_change_url)s"
+"\">upload one</a> now."
+msgstr ""
+"У вас нет аватарки для удаления. Пожалуйста <a href=\"%(avatar_change_url)s"
+"\">загрузите её</a> сейчас."
+
+#: templates/avatar/confirm_delete.html:18
+msgid "Delete These"
+msgstr "Удалить"

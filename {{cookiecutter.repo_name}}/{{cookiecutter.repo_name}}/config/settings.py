@@ -37,7 +37,6 @@ class Common(Configuration):
         'django.contrib.sites',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-
         # Useful template tags:
         # 'django.contrib.humanize',
 
@@ -67,6 +66,8 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
+        'admin_tools.theming', #admin tools
+        'admin_tools.dashboard',
     )
     ########## END APP CONFIGURATION
 
@@ -118,16 +119,30 @@ class Common(Configuration):
     DATABASES = values.DatabaseURLValue('postgres://postgres@/{{cookiecutter.repo_name}}')
     ########## END DATABASE CONFIGURATION
 
-    ########## CACHING
-    # Do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
-    # memcacheify is what's used in Production
+
+    ########## CACHING AND SESSIONS CONFIGURATION
     CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': ''
+    "default": {
+        "BACKEND": "redis_cache.cache.RedisCache",
+        "LOCATION": "127.0.0.1:6379:0",
+        "OPTIONS": {
+            "CLIENT_CLASS": "redis_cache.client.DefaultClient",
+            }
         }
     }
-    ########## END CACHING
+    SESSION_ENGINE = 'redis_sessions.session'
+    ########## END CACHING AND SESSIONS CONFIGURATION
+
+    ########## REDIS CONFIGURATION
+    THUMBNAIL_REDIS_HOST = '127.0.0.1'
+    THUMBNAIL_REDIS_PORT = 6379
+    THUMBNAIL_REDIS_DB = 0
+    THUMBNAIL_KEY_PREFIX = 'thumb'
+    SESSION_REDIS_HOST = '127.0.0.1'
+    SESSION_REDIS_PORT = 6379
+    SESSION_REDIS_DB = 0
+    SESSION_REDIS_PREFIX = 'sess'
+    ########## END REDIS CONFIGURATION
 
     ########## GENERAL CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
@@ -147,6 +162,16 @@ class Common(Configuration):
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
     USE_TZ = True
+
+    # Locales
+    gettext = lambda s: s
+    LANGUAGES = (
+        ('ru', gettext('Russian')),
+        ('en', gettext('English')),
+    )
+    LOCALE_PATHS = (
+        join(BASE_DIR, 'locale'),
+    )
     ########## END GENERAL CONFIGURATION
 
     ########## TEMPLATE CONFIGURATION
@@ -207,7 +232,7 @@ class Common(Configuration):
     MEDIA_URL = '/media/'
     ########## END MEDIA CONFIGURATION
 
-    ########## URL Configuration
+    ########## URL ConfigurationAunque los importantísimos yacimientos de gas de Siria no parezcan tener hoy el mismo valor que hace 12 años, momento en que se planificó la guerra contra ese país, no es menos cierto que siguen siendo un factor invisible del conflicto. La Comisión Económica de la Coalición de la oposición externa siria se ha dedicado esencialmente a la repartición del gas que se haría entre los aliados después de la caída del Estado sirio. Pero, como ese momento no acaba de llegar, las grandes potencias van a tener que revisar sus apuestas.1314566-1730036
     ROOT_URLCONF = 'config.urls'
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
@@ -223,6 +248,7 @@ class Common(Configuration):
     # Some really nice defaults
     ACCOUNT_AUTHENTICATION_METHOD = "email"
     ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_EMAIL_VERIFICATION = "mandatory"
     ########## END AUTHENTICATION CONFIGURATION
 
@@ -239,6 +265,14 @@ class Common(Configuration):
     ########## SORL THUMBNAIL
     THUMBNAIL_KVSTORE = "sorl.thumbnail.kvstores.redis_kvstore.KVStore"
     ########## END SORL THUMBNAIL
+
+    ########## DJANGO COMPRESSOR
+    COMPRESS_ENABLED = True
+    COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',
+                            'compressor.filters.datauri.CssDataUriFilter', 'compressor.filters.cssmin.CSSMinFilter']
+    COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.SlimItFilter']
+    COMPRESS_DATA_URI_MAX_SIZE = 4096
+    ########## END DJANGO COMPRESSOR
 
     ########## LOGGING CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
@@ -385,11 +419,6 @@ class Production(Common):
         )),
     )
     ########## END TEMPLATE CONFIGURATION
-
-    ########## CACHING
-    # Only do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
-    CACHES = values.CacheURLValue(default="memcached://127.0.0.1:11211")
-    ########## END CACHING
 
     ########## Your production stuff: Below this line define 3rd party libary settings
 

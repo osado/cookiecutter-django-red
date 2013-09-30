@@ -1,2 +1,2 @@
-Copyright (c) {{ cookiecutter.year }}, {{ cookiecutter.full_name }}
+Copyright (c) {{ cookiecutter.year }}, {{ cookiecutter.author_name }}
 All rights reserved.
