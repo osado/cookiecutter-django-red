@@ -66,7 +66,9 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
-        'admin_tools.theming', #admin tools
+        'admin_tools',  #admin tools
+        'admin_tools.menu',
+        'admin_tools.theming',
         'admin_tools.dashboard',
         'django.contrib.admin', # Admin
     )
