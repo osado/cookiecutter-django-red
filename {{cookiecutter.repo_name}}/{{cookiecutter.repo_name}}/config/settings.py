@@ -40,8 +40,8 @@ class Common(Configuration):
         # Useful template tags:
         # 'django.contrib.humanize',
 
-        # Admin
-        'django.contrib.admin',
+        
+        
     )
     THIRD_PARTY_APPS = (
         'south',  # Database migration helpers:
@@ -68,6 +68,7 @@ class Common(Configuration):
         'allauth.socialaccount',  # registration
         'admin_tools.theming', #admin tools
         'admin_tools.dashboard',
+        'django.contrib.admin', # Admin
     )
     ########## END APP CONFIGURATION
 
@@ -96,6 +97,10 @@ class Common(Configuration):
     #       In production, this is changed to a values.SecretValue() setting
     SECRET_KEY = "CHANGEME!!!"
     ########## END SECRET CONFIGURATION
+
+    ########## ADMIN TOOLS CONFIGURATION
+    ADMIN_TOOLS_INDEX_DASHBOARD = 'config.dashboard.CustomIndexDashboard'
+    ########## END ADMIN TOOLS CONFIGURATION
 
     ########## FIXTURE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-FIXTURE_DIRS
@@ -226,7 +231,7 @@ class Common(Configuration):
 
     ########## MEDIA CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-    MEDIA_ROOT = join(BASE_DIR, 'media')
+    MEDIA_ROOT = join(BASE_DIR, '../media')
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
     MEDIA_URL = '/media/'
