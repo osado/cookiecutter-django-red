@@ -1,7 +1,7 @@
 # {{ cookiecutter.description }}.
 # Copyright (C) {{ cookiecutter.year }}, {{ cookiecutter.author_name }}
 # This file is distributed under the same license as the {{ cookiecutter.project_name }} package.
-# Nikolay Udalov <nikolaj.udalov@gmail.com>, 2013.
+# Nikolay Udalov <nikolaj.udalov@gmail.com>, 2014.
 #
 #, fuzzy
 msgid ""

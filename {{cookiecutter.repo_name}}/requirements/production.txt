@@ -2,6 +2,6 @@
 #	production that isn't in development.
 -r base.txt
 
-django-storages==1.1.4
-boto==2.9.5
-uwsgi
+django-storages==1.1.8
+Collectfast==0.1.13
+boto==2.23.0
