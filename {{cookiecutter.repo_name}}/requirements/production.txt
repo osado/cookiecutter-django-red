@@ -3,5 +3,5 @@
 -r base.txt
 
 django-storages==1.1.8
-Collectfast==0.1.13
+Collectfast==0.2.0
 boto==2.23.0

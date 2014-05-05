@@ -20,7 +20,6 @@ Features
 * Деплой и управление через Fabric
 * Запуск через uwsgi (+ nginx)
 * Redis для кеша и для sorl.thumbnail
-* django-compressor + локальные копии bootstrap, AngularJS и прочего
 * оставлен django-storages, но по умолчанию локальный storage
 
 
